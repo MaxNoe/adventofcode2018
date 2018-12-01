@@ -5,3 +5,4 @@ input = get_aoc_input(1)
 frequency_shifts = parse_input(input)
 
 println("Solution 1: ", part_1(frequency_shifts))
+println("Solution 2: ", part_2(frequency_shifts))
