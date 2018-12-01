@@ -9,3 +9,5 @@ function get_aoc_input(day::Int, year::Int=2018)
 	response = HTTP.get(url, headers=[header])
 	return String(response.body)
 end
+
+export get_aoc_input
