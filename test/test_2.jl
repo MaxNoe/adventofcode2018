@@ -22,4 +22,22 @@ using Test
 
 	@test part_1(test_input) == 12
 end
+
+@testset "day 2, part 2" begin
+	test_input = [
+		"abcde",
+		"fghij",
+		"klmno",
+		"pqrst",
+		"fguij",
+		"axcye",
+		"wvxyz",
+    ]
+
+	@test Day2.is_similar(test_input[1], test_input[2]) == false
+	@test Day2.is_similar(test_input[2], test_input[5]) == true
+	@test Day2.get_common(test_input[2], test_input[5]) == "fgij"
+
+	@test part_2(test_input) == "fgij"
+end
 end
