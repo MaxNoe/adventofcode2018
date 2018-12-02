@@ -5,3 +5,4 @@ input = get_aoc_input(2)
 ids = parse_input(input)
 
 println("Solution 1: ", part_1(ids))
+println("Solution 2: ", part_2(ids))
