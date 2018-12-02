@@ -1,4 +1,7 @@
+module test_2
+
 using AdventOfCode2018.Day2
+using Test
 
 @testset "day 2, part 1" begin
 	@test parse_input("ab\nbc\ncd\nbr") == ["ab", "bc", "cd", "br"]
@@ -13,12 +16,10 @@ using AdventOfCode2018.Day2
 		"ababab",
     ]
 
-	@test has_two(test_input[0]) == false
-	@test has_three(test_input[0]) == false
-	@test has_two(test_input[1]) == true
-	@test has_three(test_input[1]) == true
-	@test has_two(test_input[2]) == true
-	@test has_three(test_input[2]) == false
+	@test Day2.check_id(test_input[1]) == (false, false)
+	@test Day2.check_id(test_input[2]) == (true, true)
+	@test Day2.check_id(test_input[3]) == (true, false)
 
 	@test part_1(test_input) == 12
+end
 end
