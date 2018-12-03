@@ -10,6 +10,7 @@ testinput = """#1 @ 1,3: 4x4
 
 @testset "day 3, part 1" begin
 	rectangles = parse_input(testinput)
+
 	@test rectangles[1].id == 1
 	@test rectangles[2].id == 2
 	@test rectangles[3].id == 3
@@ -30,10 +31,14 @@ testinput = """#1 @ 1,3: 4x4
 	@test rectangles[2].height == 4
 	@test rectangles[3].height == 2
 
-	@test calc_size(rectangles) == [7, 7]
+	used_patches = build_used_patches(rectangles)
+	@test part_1(used_patches) == 4
+end
 
-	@test part_1(rectangles) = 4
-									 
+@testset "day 3, part 2" begin
+	rectangles = parse_input(testinput)
+	used_patches = build_used_patches(rectangles)
+	@test part_2(rectangles, used_patches) == 3
 end
 
 end
