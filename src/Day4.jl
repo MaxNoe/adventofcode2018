@@ -3,6 +3,7 @@ using Dates
 export parse_input
 export build_sleep_map
 export part_1
+export part_2
 
 function parse_input(input::String)
     rows = split(strip(input), "\n")
@@ -64,6 +65,18 @@ function part_1(sleep_map)
 	)
 	minutes_asleep, guard = findmax(total_sleep)
 	times, most_sleepy_minute = findmax(sleep_map[guard])
+	return guard * most_sleepy_minute
+end
+
+function part_2(sleep_map)
+	max_sleep = Dict(
+		guard=>maximum(values(sleep))
+		for (guard, sleep) in sleep_map
+		if length(sleep) > 0
+	)
+	times_asleep, guard = findmax(max_sleep)
+	println(times_asleep, " ", guard)
+	minute, most_sleepy_minute = findmax(sleep_map[guard])
 	return guard * most_sleepy_minute
 end
 

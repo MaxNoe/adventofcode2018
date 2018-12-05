@@ -10,3 +10,4 @@ guard_info = parse_input(input)
 sleep_map = build_sleep_map(guard_info)
 
 println("Solution 1: ", part_1(sleep_map))
+println("Solution 2: ", part_2(sleep_map))
