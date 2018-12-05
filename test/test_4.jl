@@ -51,6 +51,7 @@ parsed_input = [
 	
 	map = build_sleep_map(parsed)
 	@test part_1(map) == 240
+	@test part_2(map) == 4455
 	
 end
 
