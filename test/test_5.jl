@@ -16,4 +16,8 @@ using Test
 	@test part_1("dabAcCaCBAcCcaDA") == 10
 end
 
+@testset "day 5, part 2" begin
+	@test part_1("dabAcCaCBAcCcaDA") == 10
+end
+
 end
