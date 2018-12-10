@@ -12,4 +12,6 @@ for day in 1:4
 	include("Day$day.jl")
 end
 
+include("Day10.jl")
+
 end
