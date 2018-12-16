@@ -13,5 +13,6 @@ for day in 1:4
 end
 
 include("Day10.jl")
+include("Day16.jl")
 
 end
