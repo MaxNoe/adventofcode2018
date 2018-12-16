@@ -54,7 +54,7 @@ function part_1(examples)
     for example in examples
         n_fitting = 0
         for operation! in operations
-            if test_operation(operation!, example.before, example.after, example.instruction)
+            if test_operation(operation!, example)
                 n_fitting += 1
             end
         end
@@ -82,10 +82,10 @@ function execute_program(program, opcodes)
     return register
 end
 
-function test_operation(operation!, before, after, instruction)
-    register = copy(before)
-    operation!(register, instruction)
-    return register == after
+function test_operation(operation!, example)
+    register = copy(example.before)
+    operation!(register, example.instruction)
+    return register == example.after
 end
 
 
@@ -94,10 +94,7 @@ function derive_opcode_meaning(examples)
 
     for example in examples
         opcode = example.instruction.opcode 
-        filter!(
-            o -> test_operation(o, example.before, example.after, example.instruction),
-            opcodes[opcode],
-        )
+        filter!(o -> test_operation(o, example), opcodes[opcode])
     end
 
     unknown = opcodes
