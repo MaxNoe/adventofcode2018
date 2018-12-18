@@ -34,6 +34,7 @@ dag = Dict(
 	@test parse_input(test_input) == parsed_input
     @test build_dag(parsed_input) == dag
 	@test part_1(dag) == "CABDFE"
+	@test part_2(dag) == 15
 end
 
 end

@@ -1,5 +1,5 @@
 module Day7
-export parse_input, build_dag, part_1
+export parse_input, build_dag, part_1, part_2
 
 pattern = r"Step (\w) must be finished before step (\w) can begin"
 
@@ -28,6 +28,7 @@ end
 
 
 function part_1(dag)
+    dag = deepcopy(dag)
     order = ""
     while length(dag) > 0
         possible = collect(filter(k -> length(dag[k]) == 0, keys(dag)))
@@ -42,6 +43,49 @@ function part_1(dag)
         end
     end
     return order
+end
+
+function part_2(dag; workers=2, per_task=0)
+    dag = deepcopy(dag)
+    done_at = Dict{String, Int}()
+    free_workers = workers
+
+    t = -1
+    while (length(dag) > 0) | (length(done_at) > 0)
+        t += 1
+
+        for task_done in filter(k -> done_at[k] == t, keys(done_at))
+            pop!(done_at, task_done)
+            free_workers += 1
+
+            for dependencies in values(dag)
+                filter!(l -> l != task_done, dependencies)
+            end
+
+        end
+
+        if free_workers == 0
+            continue
+        end
+
+        possible = collect(filter(k -> length(dag[k]) == 0, keys(dag)))
+
+        if length(possible) == 0
+            continue
+        end
+
+        sort!(possible)
+        n_possible = min(length(possible), free_workers)
+
+        for i in 1:n_possible
+            next = possible[i]
+            pop!(dag, next)
+            free_workers -= 1
+            done_at[next] = t + per_task + next[1] - 'A' + 1
+        end
+    end
+
+    return t
 end
 
 end
