@@ -1,5 +1,5 @@
 module Day6
-export parse_input, part_1
+export parse_input, part_1, part_2
 
 function parse_input(input::String)
     lines = split(strip(input), "\n") 
@@ -42,7 +42,6 @@ function part_1(coords)
             end
         end
     end
-    println(sum(grid .== -1))
 
     areas = zeros(Int, size(coords, 1))
     for i in 1:n_x
@@ -58,6 +57,38 @@ function part_1(coords)
         end
     end
     return maximum(areas)
+end
+
+
+function part_2(coords)
+    max_total_distance = 10000
+    xmin, ymin = minimum(coords, dims=1)
+    xmax, ymax = maximum(coords, dims=1)
+
+    n_x = xmax - xmin
+    n_y = ymax - ymin
+
+    grid = zeros(Int, (n_x, n_y))
+
+    safe_size = 0
+
+    for i in 1:n_x
+        for j in 1:n_y
+            x1 = i + xmin - 1
+            y1 = j + ymin - 1
+
+            total_distance = 0
+            for k in 1:size(coords, 1)
+                x2, y2 = coords[k, :]
+                dist = manhattan(x1, y1, x2, y2)
+                total_distance += dist
+            end
+            if total_distance < max_total_distance
+                safe_size += 1
+            end
+        end
+    end
+    return safe_size
 end
 
 end
