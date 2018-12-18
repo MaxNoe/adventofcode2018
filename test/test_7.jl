@@ -1,5 +1,5 @@
 module test_7
-using AdventOfCode2018.Day1
+using AdventOfCode2018.Day7
 using Test
 
 test_input = """Step C must be finished before step A can begin.
@@ -26,7 +26,7 @@ dag = Dict(
     "B" => ["A"],
     "C" => [],
     "D" => ["A"],
-    "E" => ["D", "B", "F"],
+    "E" => ["B", "D", "F"],
     "F" => ["C"],
 )
 

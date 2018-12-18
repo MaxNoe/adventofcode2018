@@ -12,7 +12,10 @@ for day in 1:4
 	include("Day$day.jl")
 end
 
-include("Day6.jl")
+for day in 6:7
+	include("Day$day.jl")
+end
+
 include("Day10.jl")
 include("Day16.jl")
 
