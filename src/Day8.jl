@@ -1,5 +1,5 @@
 module Day8
-export Node, parse_input, build_tree, part_1
+export Node, parse_input, build_tree, part_1, part_2
 
 struct Node
     metadata::Array{Int, 1}
@@ -39,6 +39,22 @@ function part_1(tree::Node)::Int
         total += part_1(child)
     end
     return total
+end
+
+function part_2(tree::Node)::Int
+    if length(tree.children) == 0
+        return sum(tree.metadata)
+    end
+
+    value = 0
+    for child_index in tree.metadata
+        if child_index > length(tree.children)
+            continue
+        end
+        value += part_2(tree.children[child_index])
+    end
+
+    return value
 end
 
 
