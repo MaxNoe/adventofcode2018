@@ -6,7 +6,7 @@ for day in 1:4
 	include("Day$day.jl")
 end
 
-for day in 6:8
+for day in 6:9
 	include("Day$day.jl")
 end
 
