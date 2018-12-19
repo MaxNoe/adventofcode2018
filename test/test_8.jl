@@ -15,6 +15,7 @@ tree = Node(metadata=[1, 1, 2], children=[
 	@test parse_input(test_input) == numbers
     @test build_tree(numbers) == tree
     @test part_1(tree) == 138
+    @test part_2(tree) == 66
 
 end
 
