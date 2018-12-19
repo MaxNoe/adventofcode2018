@@ -1,18 +1,12 @@
 module AdventOfCode2018
 
-export Day1
-export Day2
-export Day3
-export Day4
-
 include("get_input.jl")
-
 
 for day in 1:4
 	include("Day$day.jl")
 end
 
-for day in 6:7
+for day in 6:8
 	include("Day$day.jl")
 end
 
